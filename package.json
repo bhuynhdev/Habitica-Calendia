@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "serverstart": "DEBUG=habitica-calendia:* npm run devstart"
+    "server": "DEBUG=habitica-calendia:* npm run devstart",
+    "client": "cd client && npm run start"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
