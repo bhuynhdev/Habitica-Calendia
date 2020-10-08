@@ -1,5 +1,4 @@
 import React from 'react';
-import './Todos.css'
 
 export default function FilterToolBar(props) {
 	return (

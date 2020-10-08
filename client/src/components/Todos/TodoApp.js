@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import AddTodo from './AddTodo';
 import FilterButton from './FilterButton';
 import TodoItem from './TodoItem';
-import './Todos.css';
 import { nanoid } from "nanoid";
 
 export default function TodoApp(props) {

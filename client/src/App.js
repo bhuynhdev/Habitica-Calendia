@@ -9,16 +9,19 @@ function App() {
     {id:'1', name:'Sleep', completed:false}
   ];
   return (
-    <div className="App">
+    <React.Fragment>
       <header className="App-header">
         <p>
           Your task manager calendar
           <img src={logo} className="App-logo" alt="React-logo" />
         </p>
       </header>
-      <TodoApp tasks={DATA}/>
-      <Calendar/>
-    </div>
+      <div className="App">
+        <TodoApp tasks={DATA} className='TodoApp'/>
+        <Calendar className='Calendar'/>
+      </div>
+    </React.Fragment>
+    
   );
 }
 

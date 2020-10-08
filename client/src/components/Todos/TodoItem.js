@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useRef, useEffect } from 'react'; //Improve accesiblity by manipulating focus indicator
-import './Todos.css'
 
 function usePrevious(value) {
   const ref = useRef();
