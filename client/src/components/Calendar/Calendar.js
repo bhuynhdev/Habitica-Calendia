@@ -5,17 +5,28 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list';
 
-export default class Calendar extends React.Component {
-  render() {
-    return (
-    	<div className="Calendar">
-	    	<FullCalendar
-	        plugins={[ dayGridPlugin, timeGridPlugin, listPlugin ]}
-	        initialView="dayGridMonth"
-	        headerToolbar={{center: 'timeGridDay,timeGridWeek,dayGridMonth,listWeek',
-							right:'today,prev,next'}}
-	      	/>
-    	</div>      
-    );
+
+function createEventObject(task) {
+  return {
+    id: task.id,
+    title: task.name,
+    start: task.startTime,
+    end: task.endTime,
+    description: task.description
   }
+}
+
+export default function Calendar(props) {
+  let eventList = props.tasks.map(task => createEventObject(task))
+
+  return (
+  	<FullCalendar
+      plugins={[ dayGridPlugin, timeGridPlugin, listPlugin ]}
+      initialView="dayGridMonth"
+      headerToolbar={{center: 'timeGridDay,timeGridWeek,dayGridMonth,listWeek',
+					right:'today,prev,next'}}
+    	height={'100%'}
+      events = {eventList}
+      />
+  );
 }

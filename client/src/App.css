@@ -1,13 +1,21 @@
 .App {
   text-align: center;
+  align-items: stretch;
   display: flex;
-  flex-direction: row;
+  height: 100%;
 }
 .Calendar {
-  flex: 10;
+  width: 75%;
+  border: 2px solid blue;
+  color: red;
+  height: 90vh;
 }
-.TodoApp {
-  flex: 1;
+.DashBoard {
+  width: 25%;
+  justify-content: center;
+  margin: 1%;
+  padding: 1%;
+  border: 2px solid red;
 }
 
 .App-logo {
