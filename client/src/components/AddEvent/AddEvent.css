@@ -1,0 +1,32 @@
+* {
+	box-sizing: border-box;
+}
+
+.AddEventDiv {
+	width: 70%;
+	margin: auto;
+	text-align: center;
+}
+
+.AddEventSubmit{
+	background-color: blue;
+	color: white;
+	padding: 10px;
+	border-radius: 10px;
+	margin: auto;
+}
+
+label {
+	display: block;
+	text-align: left;
+}
+
+input {
+	padding: 5px;
+	margin: 5px;
+	width: 100%;
+	border: none;
+	display: inline-block;
+	border: 1.5px solid gray;
+	border-radius: 10px;
+}

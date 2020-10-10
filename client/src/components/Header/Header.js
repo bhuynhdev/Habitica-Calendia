@@ -10,7 +10,8 @@ export default function Header() {
 		    <img src={logo} className="App-logo" alt="React-logo" />
 		  </div>
 		  <div className="navigation">
-		    <Link to="/">Home</Link> | <Link to="/addevent">Add event</Link>
+		    <Link className="Link" to="/">Home</Link>{' '}|{' '}
+			<Link className="Link" to="/addevent"> Add event</Link>
 		  </div>
 	  </React.Fragment>
 	)

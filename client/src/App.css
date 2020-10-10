@@ -13,7 +13,7 @@
 .DashBoard {
   width: 25%;
   justify-content: center;
-  margin: 1%;
+  margin: 0 1%;
   padding: 1%;
   border: 2px solid red;
 }
@@ -130,7 +130,6 @@ body {
   padding: 0.8rem 1rem 0.7rem;
   border: 0.2rem solid #4d4d4d;
   cursor: pointer;
-  text-transform: capitalize;
 }
 .btn.toggle-btn {
   border-width: 1px;
@@ -344,4 +343,8 @@ body {
 
 .done {
   text-decoration: line-through;
+}
+
+.Link {
+  color:yellow;
 }

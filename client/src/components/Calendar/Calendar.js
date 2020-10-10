@@ -9,7 +9,7 @@ import listPlugin from '@fullcalendar/list';
 function createEventObject(task) {
   return {
     id: task.id,
-    title: task.name,
+    title: task.title,
     start: task.startTime,
     end: task.endTime,
     description: task.description
@@ -23,6 +23,7 @@ export default function Calendar(props) {
   	<FullCalendar
       plugins={[ dayGridPlugin, timeGridPlugin, listPlugin ]}
       initialView="dayGridMonth"
+      weekNumberCalculation="ISO"
       headerToolbar={{center: 'timeGridDay,timeGridWeek,dayGridMonth,listWeek',
 					right:'today,prev,next'}}
     	height={'100%'}

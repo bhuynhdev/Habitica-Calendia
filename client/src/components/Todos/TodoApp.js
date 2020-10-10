@@ -10,8 +10,8 @@ export default function TodoApp(props) {
 	const [filterMode, setFilterMode] = useState('All');
 	
 	function addTask(name) {
-  	const newTask = { id: nanoid(9), name: name, completed: false };
-  	setTasks([...tasks, newTask]);
+  		const newTask = { id: nanoid(9), name: name, completed: false };
+  		setTasks([...tasks, newTask]);
 	}
 
 	function deleteTask(toDeleteId) {
