@@ -28,8 +28,8 @@ export default function TodoItem(props) {
   	// References for the editField and editButton in editingTemplate,
   	// allowing us to focus these exact elements in appropriate situations
   	const editFieldRef = useRef(null);
-		const editButtonRef = useRef(null);
-		const wasEditing = usePrevious(isEditing);
+    const editButtonRef = useRef(null);
+    const wasEditing = usePrevious(isEditing);
 		// Side effect: After rendering the element, focus them following the logic below
 		useEffect(() => {
 			// Focus on Edit Field if switch from viewing to editing
