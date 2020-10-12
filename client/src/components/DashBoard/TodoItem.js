@@ -23,7 +23,7 @@ export default function TodoItem(props) {
 		{/*Delete button*/}
 			<div className="btn-group">
 			<button type="button" className="btn btn__danger" onClick={() => deleteTask(id)}>
-			Delete <span className="visually-hidden">{title} </span> from Dashboard
+			Remove <span className="visually-hidden">{title} </span> from Dashboard
 			</button>
 		</div>
 	</li>

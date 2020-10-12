@@ -77,7 +77,7 @@ exports.event_update_post = function(req, res, next) {
     let updatedEvent = req.body;
     Event.findByIdAndUpdate(toUpdateId, updatedEvent)
         .then(() => {
-            res.redirect("http://localhost:3000")
+            res.redirect("http://localhost:3000");
         })
         .catch(err => {
             return next(err);
@@ -89,5 +89,7 @@ exports.event_delete_get = function(req, res, next) {
 }
 
 exports.event_delete_post = function(req, res, next) {
-    res.send("NOT IMPLEMENTED: Delete event POST")
+    Event.deleteOne({ _id: req.params.id })
+        .then(() => res.redirect("http://localhost:3000"))
+        .catch(err => next(err))
 }

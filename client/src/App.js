@@ -5,24 +5,35 @@ import Calendar from './components/Calendar/Calendar'
 import AddEvent from './components/AddEvent/AddEvent'
 import Header from './components/Header/Header'
 import DashBoard from './components/DashBoard/DashBoard'
+import EventDialog from './components/EventDialog/EventDialog'
 import { BrowserRouter as Router, Route} from "react-router-dom";
 
 function App() {
-  const [taskList, setTaskList] = useState([])
+  const [eventList, setEventList] = useState([])
   const [isLoaded, setReadyStatus] = useState(false);
-  
+  const [clickedEvent, setClickedEvent] = useState({extendedProps: {}});
+  const [openEditForm, setOpenEditForm] = useState(false);
 
+  let handleEventClick= ({event}) => {
+    setClickedEvent(event);
+    setOpenEditForm(true);
+  }
+
+  const handleClose = () => {
+    setOpenEditForm(false);
+  };
+  
   useEffect(() => {
     fetch('/api/events')
       .then(res => res.json())
-      .then(eventList => setTaskList(eventList))
+      .then(eventList => setEventList(eventList))
       .then(() => setReadyStatus(true));
   }, []);
 
-  const taskDashBoard = taskList.filter(task => task.show);
+  const taskDashBoard = eventList.filter(task => task.show);
   // function addTask(title, desp, start, end) {
   //   const newTask = { id: nanoid(9), name: title, description: desp, completed: false, startTime: start, endTime: end };
-  //   setTaskList([...taskList, newTask]);
+  //   setTaskList([...eventList, newTask]);
   // }
 
   return isLoaded? (
@@ -34,19 +45,25 @@ function App() {
           </div>
           <div className="App">
             <div className="Calendar">
-              <Calendar tasks={taskList}/>
+              <Calendar tasks={eventList} onEventClick={handleEventClick}/>
             </div>
             <div className="DashBoard">
               <DashBoard tasks={taskDashBoard}/>
             </div>
+            <div>
+              <EventDialog open={openEditForm} onClose={handleClose} event={clickedEvent} />
+            </div>            
           </div>
         </React.Fragment>
       )} />
       <Route path="/addevent" render={
         props => <AddEvent/>
       } />
+      {/* <Route path="/editevent" render={
+        props => {}
+      } /> */}
     </Router>    
-  ) : <Calendar tasks={taskList}/>;
+  ) : <Calendar tasks={eventList}/>;
 }
 
 export default App;
