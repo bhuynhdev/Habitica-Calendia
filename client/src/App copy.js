@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -15,7 +14,6 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 
 function App() {
   const [eventList, setEventList] = useState([])
-  const [score, setScore] = useState(100);
   const [isLoaded, setReadyStatus] = useState(false);
   const [clickedEvent, setClickedEvent] = useState({extendedProps: {}});
   const [openEditForm, setOpenEditForm] = useState(false);
@@ -30,19 +28,11 @@ function App() {
   };
   
   useEffect(() => {
-    let eventsPromise = fetch('/api/events')
+    fetch('/api/events')
       .then(res => res.json())
-    let scorePromise = fetch('api/score')
-      .then(res => res.json())
-    
-    Promise.all([eventsPromise, scorePromise])
-      .then(([eventList, scoreObj]) => {
-        setEventList(eventList);
-        setScore(scoreObj.score);
-        setReadyStatus(true);
-      })
-      .catch(err => console.log(err));
-}, []);
+      .then(eventList => setEventList(eventList))
+      .then(() => setReadyStatus(true));
+  }, []);
 
   const taskDashBoard = eventList.filter(task => task.show);
   // function addTask(title, desp, start, end) {
@@ -53,20 +43,20 @@ function App() {
   return isLoaded? (
     <Router>
       <Route path="/" exact render={props => (
-        <Container fluid>
-          <Row className="App-header">
+        <Container>
+          <div className="App-header">
             <Header />
-          </Row>
-          <Row>
-            <Col xs={9} className="Calendar">
+          </div>
+          <div className="App">
+            <div className="Calendar">
               <Calendar tasks={eventList} onEventClick={handleEventClick}/>
-            </Col>
-            <Col xs={3} className="Dashboard">
-              <DashBoard tasks={taskDashBoard} score={score}/>
-            </Col>        
-          </Row>
-          <div>
-            <EventDialog open={openEditForm} onClose={handleClose} event={clickedEvent} />
+            </div>
+            <div className="DashBoard">
+              <DashBoard tasks={taskDashBoard}/>
+            </div>
+            <div>
+              <EventDialog open={openEditForm} onClose={handleClose} event={clickedEvent} />
+            </div>            
           </div>
         </Container>
       )} />

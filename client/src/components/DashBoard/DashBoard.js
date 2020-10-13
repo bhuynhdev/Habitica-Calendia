@@ -5,6 +5,7 @@ import FilterButton from './FilterButton'
 
 function DashBoard(props) {
 
+	const [score, setScore] = useState(props.score);
 	const [tasks, setTasks] = useState(props.tasks);
 	const [filterMode, setFilterMode] = useState('All');
 	const FILTER_MAP = {
@@ -13,6 +14,17 @@ function DashBoard(props) {
 	  Completed: task => task.completed
 	};
 	const FILTER_MODES = Object.keys(FILTER_MAP);
+
+	function updateScore(newScore) {
+		setScore(newScore);
+		let updateScoreURL = '/api/score/update';
+		const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ score: newScore })
+		};
+		fetch(updateScoreURL, requestOptions);
+	}
 
 	function deleteTask(toDeleteId) {
 		console.log(toDeleteId);
@@ -25,11 +37,10 @@ function DashBoard(props) {
 			body: JSON.stringify({ show: false })
 		};
 		fetch(updateURL, requestOptions);
-		  
 	}
 
 	function toggleTaskComplete(id) {
-		let newCompletionStatus;
+		var newCompletionStatus;
 	  	const updatedTasks = tasks.map(currentTask => {
 	    // if this task has the same ID as the edited task
 			if (id === currentTask.id) {
@@ -41,13 +52,14 @@ function DashBoard(props) {
 	    return currentTask;
 		});
 		setTasks(updatedTasks);
-		let updateURL = "/api/event/" + id + "/update";
+		let updateEventURL = "/api/event/" + id + "/update";
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ completed: newCompletionStatus })
 		};
-		fetch(updateURL, requestOptions);
+		fetch(updateEventURL, requestOptions);
+		updateScore((newCompletionStatus === true)? score + 10 : score - 10);
 	}
 
 
@@ -89,9 +101,13 @@ function DashBoard(props) {
 			<div className="TodoList">
 				<h2 id="list-heading">{headingText}</h2>
 				<ul className="todo-list stack-large stack-exception"	aria-labelledby="list-heading">
-					{taskList}
-      	</ul>
-      </div>
+				{taskList}
+      			</ul>
+      		</div>
+			<div>
+				Score:{' '}
+				{score}
+			</div>
 		</div>
 	)
 }

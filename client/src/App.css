@@ -1,21 +1,19 @@
+
 .App {
   text-align: center;
   align-items: stretch;
   display: flex;
   height: 100%;
 }
-.Calendar {
-  width: 75%;
-  border: 2px solid blue;
-  color: red;
-  height: 90vh;
+
+.modal, .row {
+  font-size: 2.8vh;
 }
-.DashBoard {
-  width: 25%;
-  justify-content: center;
-  margin: 0 1%;
-  padding: 1%;
-  border: 2px solid red;
+
+.Calendar {
+  border: 1.5px dashed orangered;
+  color: red;
+  height: 85vh;
 }
 
 .App-logo {
@@ -33,9 +31,10 @@
   background-color: #282c34;
   display: flex;
   flex-direction: column;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: center; 
+  font-size: calc(5px + 3vmin);
   color: white;
 }
 
@@ -63,7 +62,7 @@
   outline-offset: 0;
 }
 html {
-  font: 62.5% / 1.15 sans-serif;
+  font: 100% / 1.15 sans-serif;
 }
 h1,
 h2 {
@@ -110,7 +109,6 @@ input[type="text"] {
 body {
   width: 100%;
   margin: 0 auto;
-  font: 1.6rem/1.25 Arial, sans-serif;
   background-color: #f5f5f5;
   color: #4d4d4d;
 }
@@ -126,9 +124,11 @@ body {
   display: inline-block;
   margin-top: 0.4rem;
 }
+.Dashboard .btn {
+  border: 0.2rem solid #4d4d4d;
+}
 .btn {
   padding: 0.8rem 1rem 0.7rem;
-  border: 0.2rem solid #4d4d4d;
   cursor: pointer;
 }
 .btn.toggle-btn {
@@ -241,7 +241,6 @@ body {
 [class*="__lg"] {
   display: inline-block;
   width: 100%;
-  font-size: 1.9rem;
 }
 [class*="__lg"]:not(:last-child) {
   margin-bottom: 1rem;

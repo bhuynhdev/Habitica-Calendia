@@ -6,6 +6,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import bootstrapPlugin from '@fullcalendar/bootstrap';
 
 function createEventObject(task) {
   return {
@@ -22,9 +23,9 @@ export default function Calendar(props) {
   let handleEventClick = props.onEventClick;
 
   return (
-    <React.Fragment>
-      <FullCalendar
-      plugins={[ dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin ]}
+    <FullCalendar
+      plugins={[ dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin, bootstrapPlugin ]}
+      themeSystem='bootstrap'
       initialView="dayGridMonth"
       weekNumberCalculation="ISO"
       headerToolbar={{center: 'timeGridDay,timeGridWeek,dayGridMonth,listWeek',
@@ -32,8 +33,7 @@ export default function Calendar(props) {
     	height={'100%'}
       events = {eventList}
       eventClick = {handleEventClick}
-      />
-    </React.Fragment>
+    />
   	
     
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import Button from 'react-bootstrap/Button';
 
 export default function TodoItem(props) {
   	var title = props.title;
@@ -22,9 +23,9 @@ export default function TodoItem(props) {
 		</div>
 		{/*Delete button*/}
 			<div className="btn-group">
-			<button type="button" className="btn btn__danger" onClick={() => deleteTask(id)}>
+			<Button variant="danger" onClick={() => deleteTask(id)}>
 			Remove <span className="visually-hidden">{title} </span> from Dashboard
-			</button>
+			</Button>
 		</div>
 	</li>
 	)
