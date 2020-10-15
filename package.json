@@ -6,7 +6,8 @@
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "server": "DEBUG=habitica-calendia:* npm run devstart",
-    "client": "cd client && npm run start"
+    "client": "cd client && npm run start",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
