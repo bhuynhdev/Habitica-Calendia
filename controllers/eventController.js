@@ -60,7 +60,7 @@ exports.event_create_post = function(req, res, next) {
         }
     )
     event.save()
-        .then(() =>  res.redirect("http://localhost:3000"))
+        .then(() =>  res.redirect("/"))
         .catch(err => {
             console.log(err);
             return next(err);
@@ -77,7 +77,7 @@ exports.event_update_post = function(req, res, next) {
     let updatedEvent = req.body;
     Event.findByIdAndUpdate(toUpdateId, updatedEvent)
         .then(() => {
-            res.redirect("http://localhost:3000");
+            res.redirect("/");
         })
         .catch(err => {
             return next(err);
@@ -90,6 +90,6 @@ exports.event_delete_get = function(req, res, next) {
 
 exports.event_delete_post = function(req, res, next) {
     Event.deleteOne({ _id: req.params.id })
-        .then(() => res.redirect("http://localhost:3000"))
+        .then(() => res.redirect("/"))
         .catch(err => next(err))
 }
