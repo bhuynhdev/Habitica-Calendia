@@ -1,5 +1,6 @@
 const { NotExtended } = require('http-errors');
-var Event = require('../models/event')
+var Event = require('../models/event');
+var dayjs = require('dayjs');
 
 // Display list of all Events.
 exports.event_list = function(req, res, next) {
@@ -9,10 +10,12 @@ exports.event_list = function(req, res, next) {
             res.send(list_events)
         })
 };
+
 // Display something on Even create GET request
 exports.event_create_get = function(req, res) {
     res.send('Creating task and event')
 };
+
 // Handle Event create on POST.
 exports.event_create_post = function(req, res, next) {
     let title = req.body.title;
@@ -23,31 +26,17 @@ exports.event_create_post = function(req, res, next) {
     let startTime = req.body.timestart;
     let endTime = req.body.timeend;
 
+    let timeZone = req.body.timeZone;
+
     // Date processing code
-    function toIsoTime(date, time) {
-        return new Date(date + "T" + time + ":00").toIsoString()
+    function toIsoTime(date, time, timeZone) {
+        let combined = date + "T" + time + ":00" + timeZone;
+        let result = dayjs(combined).toISOString();
+        return result;
     }
 
-    // Credit: stackoverflow.com/questions/17415579/how-to-iso-8601-format-a-date-with-timezone-offset-in-javascript 
-    Date.prototype.toIsoString = function() {
-        var tzo = -this.getTimezoneOffset(),
-        dif = tzo >= 0 ? '+' : '-',
-        pad = function(num) {
-            var norm = Math.floor(Math.abs(num));
-            return (norm < 10 ? '0' : '') + norm;
-        };
-        return this.getFullYear() +
-        '-' + pad(this.getMonth() + 1) +
-        '-' + pad(this.getDate()) +
-        'T' + pad(this.getHours()) +
-        ':' + pad(this.getMinutes()) +
-        ':' + pad(this.getSeconds()) +
-        dif + pad(tzo / 60) +
-        ':' + pad(tzo % 60);
-    };
-
-    let isoTimeStart = toIsoTime(startDate, startTime);
-    let isoTimeEnd = toIsoTime(endDate, endTime);
+    let isoTimeStart = toIsoTime(startDate, startTime, timeZone);
+    let isoTimeEnd = toIsoTime(endDate, endTime, timeZone);
       
     let event = new Event(
         {
@@ -56,7 +45,8 @@ exports.event_create_post = function(req, res, next) {
             completed: false,
             show: true,
             startTime: isoTimeStart,
-            endTime: isoTimeEnd
+            endTime: isoTimeEnd,
+            timeZone: timeZone
         }
     )
     event.save()

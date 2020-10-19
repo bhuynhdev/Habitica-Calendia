@@ -1,29 +1,22 @@
 import React from 'react';
 import './AddEvent.css'
 import { withRouter } from 'react-router-dom';
+import dayjs from 'dayjs'
 
 
 function AddEvent(props) {
 	
 	// Default values for Date and Time input fields
-	let date = new Date();
+	let now = dayjs(); // Get time of Now
+	let anHourFromNow = now.add(1, 'hour');
 
-	let day = date.getDate();
-	let month = date.getMonth() + 1;
-	let year = date.getFullYear();
-	let hour = date.getHours();
-	let oneMoreHour = hour + 1;
-	let minute = date.getMinutes();
+	let timeZone = now.format('Z');
 
-	if (month < 10) month = "0" + month;
-	if (day < 10) day = "0" + day;
-	if (hour < 10) hour = "0" + hour;
-	if (oneMoreHour < 10) oneMoreHour = "0" + oneMoreHour;
-	if (minute < 10) minute = "0" + minute;
+	let startTime = now.format('HH:mm');
+	let endTime = anHourFromNow.format('HH:mm');
 
-	var today = year + "-" + month + "-" + day;
-	var now = hour + ":" + minute;
-	var anHourFromNow = oneMoreHour + ":" + minute;
+	let startDay = now.format('YYYY-MM-DD');
+	let endDay = anHourFromNow.format('YYYY-MM-DD');
 
 	return (
 		<div className="AddEventDiv">
@@ -35,16 +28,19 @@ function AddEvent(props) {
 				<input id="taskdesp" name="desp" type="text" placeholder="No title"/>
 
 				<label htmlFor="">Choose start date</label>
-				<input id="datestart" name="datestart" type="date" defaultValue={today}/>
+				<input id="datestart" name="datestart" type="date" defaultValue={startDay}/>
 
 				<label htmlFor="endtime">Choose end date</label>
-				<input id="dateend" name="dateend" type="date" defaultValue={today}/>
+				<input id="dateend" name="dateend" type="date" defaultValue={endDay}/>
 
 				<label htmlFor="">Start Time</label>
-				<input id="timestart" name="timestart" type="time" defaultValue={now}/>
+				<input id="timestart" name="timestart" type="time" defaultValue={startTime}/>
 				
 				<label htmlFor="">End Time</label>
-				<input id="timeend" name="timeend" type="time" defaultValue={anHourFromNow}/>
+				<input id="timeend" name="timeend" type="time" defaultValue={endTime}/>
+				
+				{/* Send time zone */}
+				<input type="hidden" name="timeZone" value={timeZone} />
 
 				<button type="submit" className="AddEventSubmit">Submit</button>
 			</form>

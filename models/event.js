@@ -7,8 +7,9 @@ var EventSchema = new mongoose.Schema({
   description: {type: String},
   completed: {type: Boolean, required: true},
   show: {type: Boolean, require: true}, // Whether to show on DashBoard or not
-  startTime: {type: String, required: true},
-  endTime: {type: String, required: true}
+  startTime: {type: String, required: true}, // Savetime in UTC timezone
+  endTime: {type: String, required: true}, // Save time in UTC timezone
+  timeZone: {type: String, required: true} // The user's local timeZone to format from UTC time to local time
 });
 
 // Duplicate the ID field.
