@@ -1,4 +1,4 @@
-[banner]: ./readme_assets/timeblock-banner-canva.png "Timeblocker Calendar Todolist"
+[banner]: ./readme_assets/timeblock-banner-canva-cropped.png "Timeblocker Calendar Todolist"
 [mainUI]: ./readme_assets/screenshot-mainui.png "Main interface"
 [addEvent]: ./readme_assets/screenshot-addevent.png "Add event form"
 [listView]: ./readme_assets/screenshot-listview.png "List view"
@@ -6,6 +6,8 @@
 
 # Timeblocker Calendar - Todolist
 A web application integrating a Calendar and a Todolist to facilitate the use of the [time-blocking](https://todoist.com/productivity-methods/time-blocking) method to increase life productivity.
+
+## [Beta demo](timeblock-calendar.herokuapp.com)
 
 ![App intro banner][banner]
 
