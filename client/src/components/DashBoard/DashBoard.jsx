@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
 import TodoItem from './TodoItem';
 import FilterButton from './FilterButton'
 
@@ -112,4 +111,4 @@ function DashBoard(props) {
 	)
 }
 
-export default withRouter(DashBoard);
+export default DashBoard;
