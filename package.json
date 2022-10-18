@@ -1,44 +1,30 @@
 {
   "name": "habitica-calendia",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "server": "DEBUG=habitica-calendia:* npm run devstart",
+    "server": "set DEBUG=habitica-calendia:* & npm run devstart",
     "client": "cd client && npm run start",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && cd client && npm install && npm run build"
   },
   "dependencies": {
-    "@types/cors": "^2.8.8",
-    "cookie-parser": "~1.4.5",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "dayjs": "^1.9.3",
-    "debug": "~4.2.0",
-    "dotenv": "^8.2.0",
-    "ejs": "~3.1.5",
-    "express": "~4.17.1",
-    "http-errors": "~1.8.0",
-    "jquery": "^3.5.1",
-    "mongoose": "^5.13.15",
-    "morgan": "~1.10.0",
-    "react": "^16.14.0",
-    "react-bootstrap": "^1.3.0",
-    "react-dom": "^16.14.0",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0"
+    "dayjs": "^1.11.5",
+    "debug": "^4.3.4",
+    "dotenv": "^8.6.0",
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "mongoose": "^6.6.5",
+    "morgan": "~1.10.0"
   },
   "main": "app.js",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/baohuynhlam/Habitica-Calendia.git"
-  },
   "author": "Bao Huynh",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/baohuynhlam/Habitica-Calendia/issues"
-  },
-  "homepage": "https://github.com/baohuynhlam/Habitica-Calendia#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@types/cors": "^2.8.12"
+  }
 }
