@@ -7,7 +7,7 @@
 # Timeblocker Calendar - Todolist
 A web application integrating a Calendar and a Todolist to facilitate the use of the [time-blocking](https://todoist.com/productivity-methods/time-blocking) method to increase life productivity.
 
-## [Beta demo](http://timeblock-calendar.herokuapp.com)
+## [Beta demo](https://timeblock-calendar.up.railway.app/)
 
 ![App intro banner][banner]
 
